@@ -1,5 +1,6 @@
+com\nc\stepdefinitions\Hooks.class
+com\nc\stepdefinitions\PortalSteps.class
 com\nc\stepdefinitions\LoginSteps.class
 com\nc\AppTest.class
-com\nc\stepdefinitions\Hooks.class
 com\nc\runners\TestRunner.class
-com\nc\stepdefinitions\PortalSteps.class
+com\nc\listeners\TestListener.class

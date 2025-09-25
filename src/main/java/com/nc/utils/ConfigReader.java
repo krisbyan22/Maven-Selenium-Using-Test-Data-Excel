@@ -7,12 +7,14 @@ import java.util.Properties;
 public class ConfigReader {
     private static Properties configProp = new Properties();
     private static Properties envProp = new Properties();
+    private static Properties locatorProp = new Properties();
 
     static {
         try {
             // Load config.properties dari classpath
             InputStream configFis = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties");
             InputStream envFis = ConfigReader.class.getClassLoader().getResourceAsStream("env.properties");
+            InputStream locatorFis = ConfigReader.class.getClassLoader().getResourceAsStream("locators.properties");
 
             if (configFis == null) {
                 throw new RuntimeException("❌ File config.properties tidak ditemukan di classpath.");
@@ -24,6 +26,9 @@ public class ConfigReader {
 
             configProp.load(configFis);
             envProp.load(envFis);
+            if (locatorFis != null) {
+                locatorProp.load(locatorFis);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,5 +46,9 @@ public class ConfigReader {
 
     public static String getBrowser() {
         return System.getProperty("browser", configProp.getProperty("browser"));
+    }
+
+    public static String getLocator(String key) {
+        return locatorProp.getProperty(key);
     }
 }

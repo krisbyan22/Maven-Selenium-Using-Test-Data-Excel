@@ -35,6 +35,9 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--start-maximized");
+                if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
+                    options.addArguments("--headless");
+                }
                 driver.set(new ChromeDriver(options));
                 break;
             case FIREFOX:
